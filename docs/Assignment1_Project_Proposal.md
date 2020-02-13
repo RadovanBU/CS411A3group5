@@ -1,7 +1,7 @@
 # Project Proposals
 **Members:** Rachel Peng, Radovan Vitek, Jake Lee, Shunying Chen
 
-### Pitch 1:
+## Pitch 1:
 #### Description:
 A web application where users can input the URL of their public steam profile and obtain links to other communities they may be interested in based on their game statistics.
 
@@ -21,5 +21,5 @@ Can also save returning users, as their primary interests are unlikely to change
 * **Spotify** (potentially)**:** Extension for an alternate dataset
 
 
-### Pitch 2:
+## Pitch 2:
 An application that allows its users to input a destination, a date range, and a selection of preferences. Based on those inputs, the application would return a tailored itinerary of things to do in that area based on online reviews, weather, and the user's preferences. Ideally, we would be able to pull tourist attractions, restaurants, and places to stay for the user. But for the scope of a semester project, it seems more feasible to focus on one of those aspects - tourist attractions. So, the APIs used for this would be a weather API and a tourism API. 
