@@ -1,4 +1,4 @@
-# Story 2 (Signing in and what happens when it fails):
+# Story 2 (Signing In With Steam):
 
 #### As a user that has reached the landing page, I want to be able to sign into my Steam account so that I can access a summary of my profile.
 
