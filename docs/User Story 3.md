@@ -4,7 +4,6 @@
 
 If the Steam login is performed successfully the user will be redirected to another page where they will wait until we can generate the subreddits that they may be interested in. They will be presented as a drop down list where each subreddit will be presented in the following style:
 
-
     Name of Subreddit
     Description of the reddit, + amount of members and creation date
 
