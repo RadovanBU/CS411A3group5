@@ -1,4 +1,4 @@
-# Story 3 (Signed in user):
+# Story 3 (Generate SubReddits):
 
 #### As a signed in user, I want to be able to see a list of subreddits based on my interactions on Steam.
 
