@@ -28,8 +28,8 @@ class App extends React.Component {
   //console.log(this.state.subreddits.data.children[0].data.display_name_prefixed);
   let lenvar = this.state.subreddits.data.children.length;
 
-  for (var i = 0; i<lenvar; i++){
-    this.state.parsedData += [this.state.subreddits.data.children[i].data.display_name_prefixed + "|"]
+  for (let i = 0; i<lenvar; i++){
+    this.state.parsedData.push(this.state.subreddits.data.children[i].data.display_name_prefixed);
   }
 
   console.log(this.state.parsedData);
