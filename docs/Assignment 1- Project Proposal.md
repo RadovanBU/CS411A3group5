@@ -1,4 +1,4 @@
-# Project Proposals
+# Assignment 1 - Project Proposals
 **Members:** Rachel Peng, Radovan Vitek, Jake Lee, Shunying Chen
 
 ## Pitch 1:
