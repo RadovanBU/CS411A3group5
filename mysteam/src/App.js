@@ -9,52 +9,46 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      subreddits: {}
+      subreddits: []
     };
   };
 
+  async findReddit(query) {
+  let requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
 
-  findReddit(query) {
-    let requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-
-    fetch("http://www.reddit.com/subreddits/search.json?q=" + query + "&sort=new", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .then(result => this.setState({ 'subreddits': result }))
+  await fetch("http://www.reddit.com/subreddits/search.json?q=" + query + "&sort=new", requestOptions)
+    .then(res => res.json())
+    .then(json => this.setState({ subreddits: json }))
     .catch(error => console.log('error', error));
+};
 
-    console.log(this.state.subreddits)
-  };
+handleSubmit = event => {
+  event.preventDefault();
+  this.findReddit(this.input.value)
+};
 
-  handleSubmit = event => {
-    event.preventDefault();
-    this.findReddit(this.input.value)
-  };
+render() {
+  console.log(this.state.subreddits)
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1> Enter Your Game! </h1>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            name="game"
+            defaultValue="Steam"
+            ref={(input) => this.input = input}
+          />
+        </form>
 
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1> Enter Your Game! </h1>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              name="game"
-              defaultValue="Steam"
-              ref={(input) => this.input = input}
-            />
-          </form>
-
-        {this.state.result}
-
-        </header>
-      </div>
-    );
-  }
+      </header>
+    </div>
+  );
+}
 }
 
 export default App;
