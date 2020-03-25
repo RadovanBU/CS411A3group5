@@ -7,41 +7,50 @@ class App extends React.Component {
 
   constructor(props) {
     super(props)
-    this.url = 'https://www.reddit.com/r/Steam';
+
+    this.state = {
+      subreddits: {}
+    };
   };
 
-  state = {
-    result : ""
-  };
 
-  findReddit(q) {
+  findReddit(query) {
     let requestOptions = {
       method: 'GET',
       redirect: 'follow'
     };
 
-    fetch("http://www.reddit.com/subreddits/search.json?q=" + q + "&sort=new", requestOptions)
-      .then(response => response.text())
-      .then(result => result)
-      .catch(error => console.log('error', error));
+    fetch("http://www.reddit.com/subreddits/search.json?q=" + query + "&sort=new", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .then(result => this.setState({ 'subreddits': result }))
+    .catch(error => console.log('error', error));
+
+    console.log(this.state.subreddits)
   };
 
-
-  handleChange(event) {
-    console.log("hi");
-    this.findReddit(document.getElementById("game"));
+  handleSubmit = event => {
+    event.preventDefault();
+    this.findReddit(this.input.value)
   };
+
 
   render() {
     return (
-      <div className = "App">
+      <div className="App">
         <header className="App-header">
           <h1> Enter Your Game! </h1>
-          <form>
-            <input type="text" name="game" id="game" onChange={this.handleChange}/>
-            {/* <input type="submit" value="Submit"/> */}
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="game"
+              defaultValue="Steam"
+              ref={(input) => this.input = input}
+            />
           </form>
-          <p> {this.state.result} </p>
+
+        {this.state.result}
+
         </header>
       </div>
     );
