@@ -16,7 +16,11 @@ class App extends React.Component {
   };
 
   async findReddit(query) {
-    this.setState({ subreddits: [] })
+
+    this.setState({
+      subreddits: [],
+      parsedData: []
+    })
 
     let requestOptions = {
       method: 'GET',
@@ -49,7 +53,7 @@ class App extends React.Component {
       const listItems = this.state.parsedData.map((link) =>
         <li>{link}</li>
       );
-      
+
       return (
         <div className="App">
           <header className="App-header">
