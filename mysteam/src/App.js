@@ -9,7 +9,8 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      subreddits: []
+      subreddits: [],
+      parsedData: []
     };
   };
 
@@ -23,6 +24,15 @@ class App extends React.Component {
     .then(res => res.json())
     .then(json => this.setState({ subreddits: json }))
     .catch(error => console.log('error', error));
+
+  //console.log(this.state.subreddits.data.children[0].data.display_name_prefixed);
+  let lenvar = this.state.subreddits.data.children.length;
+
+  for (var i = 0; i<lenvar; i++){
+    this.state.parsedData += [this.state.subreddits.data.children[i].data.display_name_prefixed + "|"]
+  }
+
+  console.log(this.state.parsedData);
 };
 
 handleSubmit = event => {
