@@ -1,4 +1,4 @@
-# Assignment 3 - Prototype
+# Assignment 4 - Prototype
 
 We considered using Django or Flask as our web framework but chose against it since we felt that the MERN stack would make it easier to integrate a MongoDB database. Although an advantage of using Django or Flask is that Python executes synchronously therefore making the development process easier and more familiar for us. 
 
