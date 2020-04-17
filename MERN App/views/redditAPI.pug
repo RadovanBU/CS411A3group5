@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+    <form onsubmit= "return results();" method= "post" id = 'gameID'>
+
+    <h3> Enter Game:</h3>
+    <input id="game" type="text" name="gameName" />
+    </form>
+
+    <script>
+    var wordVar = document.getElementById('game').value();
+    document.getElementById('game').submit()
+    </script>
