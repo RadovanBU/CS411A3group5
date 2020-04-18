@@ -5,7 +5,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const Mongoose = require("mongoose");
 const mongo = require('mongodb').MongoClient;
+const passport = require('passport')
+const steampass = require('passport-steam')
 
+require('./config/passport')(passport)
+
+// load routes
+const auth = require('./routes/auth')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const redditRouter = require('./routes/reddit');
@@ -27,6 +33,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/reddit',redditRouter);
 app.use('/register', registerRouter);
+app.use('/auth', auth)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
