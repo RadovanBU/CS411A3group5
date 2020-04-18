@@ -4,7 +4,7 @@ const router = express.Router();
 const fetch = require("node-fetch");
 const db = require('../mongo/mongo');
 
-
+let redditJSON = null;
 
 
 
@@ -41,10 +41,20 @@ router.route('/')
         //console.log(gamevar);
 
 
-        let db_return = mongo.collection("games").find({"redditName":gamevar}).toArray(function(err,result){
+        let db_return = mongo.collection("games").find({"redditName":gamevar}).each(function(err,result){
             //console.log(result);
-            let dbString = result[0];
-            console.log(dbString);
+            redditJSON = result;
+
+            if (result != null){
+                res.render('dbRes',{dbRes:`Our Reddit Databse suggests ${result.reddits} `});
+                console.log(result.reddits);
+            }
+
+
+
+            //console.log(dbReddits);
+
+
 
 
 
