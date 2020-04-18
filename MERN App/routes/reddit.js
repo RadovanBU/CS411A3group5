@@ -6,15 +6,6 @@ const db = require('../mongo/mongo');
 
 
 
-constructor(props) {
-    super(props)
-
-    this.state = {
-        subreddits: [],
-        parsedData: [],
-        submitted: false
-    };
-};
 
 db.connect(function(err,client) {
     if (err){
