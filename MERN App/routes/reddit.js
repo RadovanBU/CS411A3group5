@@ -36,6 +36,8 @@ router.route('/')
     .post(function(req,res,next){
         const gamevar = req.body.gameName;
         let mongo = db.getDB();
+        let redditAPIsuggestions = new Array();
+
 
         //console.log(gamevar);
 
@@ -44,7 +46,7 @@ router.route('/')
             //console.log(result);
             redditJSON = result;
 
-            if (result != null){
+            if (redditJSON){
                 res.render('dbRes',{dbRes:`Our Reddit Databse suggests ${result.reddits} `});
                 console.log(result.reddits);
             }
@@ -62,12 +64,12 @@ router.route('/')
                         //const redditAPIsuggestions = [￿];
                         for (let i = 0; i<lenvar;i++){
                             console.log(json.data.children[i].data.display_name_prefixed);
-                            this.subreddits.push(json.data.children[i].data.display_name_prefixed);
+                            redditAPIsuggestions.push(json.data.children[i].data.display_name_prefixed);
 
 
                         }
 
-                        res.render('dbRes',{dbRes:`Our Reddit Databse suggests ${redditAPIsuggestions} `});
+                        res.render('dbRes',{dbRes:`Our Reddit Databse suggests ${redditAPIsuggestions.toString()} `});
                     })
                     .catch(err => {
                         res.render('index',{title:"An error has occuredS"});
