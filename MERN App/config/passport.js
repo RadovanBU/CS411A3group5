@@ -1,4 +1,4 @@
-const SteamStrategy = require('passort-steam').Strategy
+const SteamStrategy = require('passport-steam').Strategy
 const mongoose = require('mongoose')
 const passport = require('passport')
 const keys = require('./keys')
