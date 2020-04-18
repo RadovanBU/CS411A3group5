@@ -4,6 +4,10 @@ const router = express.Router();
 const fetch = require("node-fetch");
 const db = require('../mongo/mongo');
 
+
+
+
+
 db.connect(function(err,client) {
     if (err){
         console.log(`Err ${err}`);
@@ -38,7 +42,10 @@ router.route('/')
 
 
         let db_return = mongo.collection("games").find({"redditName":gamevar}).toArray(function(err,result){
-            console.log(result);
+            //console.log(result);
+            let dbString = result[0];
+            console.log(dbString);
+
 
 
 
