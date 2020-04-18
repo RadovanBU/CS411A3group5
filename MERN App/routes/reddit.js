@@ -69,7 +69,7 @@ router.route('/')
 
                         }
 
-                        res.render('dbRes',{dbRes:`Our Reddit Databse suggests ${redditAPIsuggestions.toString()} `});
+                        res.render('dbRes',{dbRes:`Our Reddit API suggests ${redditAPIsuggestions.toString()} `});
                     })
                     .catch(err => {
                         res.render('index',{title:"An error has occuredS"});
