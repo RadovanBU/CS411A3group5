@@ -4,9 +4,17 @@ const router = express.Router();
 const fetch = require("node-fetch");
 const db = require('../mongo/mongo');
 
-let redditJSON = null;
 
 
+constructor(props) {
+    super(props)
+
+    this.state = {
+        subreddits: [],
+        parsedData: [],
+        submitted: false
+    };
+};
 
 db.connect(function(err,client) {
     if (err){
@@ -50,6 +58,32 @@ router.route('/')
                 console.log(result.reddits);
             }
 
+            else{
+
+
+
+                fetch("http://www.reddit.com/subreddits/search.json?q=" + gamevar + "&sort=new")
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(json => {
+                        lenvar =  json.data.children.length;
+                        //const redditAPIsuggestions = [￿];
+                        for (let i = 0; i<lenvar;i++){
+                            console.log(json.data.children[i].data.display_name_prefixed);
+                            this.subreddits.push(json.data.children[i].data.display_name_prefixed);
+
+
+                        }
+
+                        res.render('dbRes',{dbRes:`Our Reddit Databse suggests ${redditAPIsuggestions} `});
+                    })
+                    .catch(err => {
+                        res.render('index',{title:"An error has occuredS"});
+                    })
+
+            }
+
 
 
             //console.log(dbReddits);
@@ -74,7 +108,7 @@ router.route('/')
             .then(json => {
                 lenvar =  json.data.children.length;
                 for (let i = 0; i<lenvar;i++){
-                    console.log(json.data.children[i].data.display_name_prefixed);
+                    //console.log(json.data.children[i].data.display_name_prefixed);
 
 
 
