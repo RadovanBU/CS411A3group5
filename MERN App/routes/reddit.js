@@ -4,6 +4,18 @@ const router = express.Router();
 const fetch = require("node-fetch");
 const db = require('../mongo/mongo');
 
+db.connect(function(err,client) {
+    if (err){
+        console.log(`Err ${err}`);
+        //return;
+    }
+
+    console.log("succ2");
+});
+
+
+
+
 
 router.get('/', function(req,res,next){
     res.render('redditAPI', {titleReddit: 'Reddit Section', reddit_p: "the reddit section"});
@@ -20,6 +32,21 @@ router.route('/')
 
     .post(function(req,res,next){
         const gamevar = req.body.gameName;
+        let mongo = db.getDB();
+
+        //console.log(gamevar);
+
+
+        let db_return = mongo.collection("games").find({"redditName":gamevar}).toArray(function(err,result){
+            console.log(result);
+
+
+
+        });
+
+        //console.log(db_return);
+
+        console.log("going on top API!");
 
 
 
@@ -31,6 +58,8 @@ router.route('/')
                 lenvar =  json.data.children.length;
                 for (let i = 0; i<lenvar;i++){
                     console.log(json.data.children[i].data.display_name_prefixed);
+
+
 
 
 
