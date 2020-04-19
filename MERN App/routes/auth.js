@@ -13,7 +13,7 @@ router.get('/steam/return',
   passport.authenticate('steam', { failureRedirect: '/' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('/steam');
   });
 
   module.exports = router;

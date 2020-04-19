@@ -54,7 +54,6 @@ router.route('/')
             else{
 
 
-
                 fetch("http://www.reddit.com/subreddits/search.json?q=" + gamevar + "&sort=new")
                     .then(response => {
                         return response.json();
@@ -65,8 +64,6 @@ router.route('/')
                         for (let i = 0; i<lenvar;i++){
                             console.log(json.data.children[i].data.display_name_prefixed);
                             redditAPIsuggestions.push(json.data.children[i].data.display_name_prefixed);
-
-
                         }
 
                         res.render('dbRes',{dbRes:`Our Reddit API suggests ${redditAPIsuggestions.toString()} `});
@@ -76,16 +73,7 @@ router.route('/')
                     })
 
             }
-
-
-
             //console.log(dbReddits);
-
-
-
-
-
-
         });
 
         //console.log(db_return);
@@ -102,11 +90,6 @@ router.route('/')
                 lenvar =  json.data.children.length;
                 for (let i = 0; i<lenvar;i++){
                     //console.log(json.data.children[i].data.display_name_prefixed);
-
-
-
-
-
                 }
             })
             .catch(err => {

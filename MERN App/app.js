@@ -6,7 +6,7 @@ const logger = require('morgan');
 const Mongoose = require("mongoose");
 const mongo = require('mongodb').MongoClient;
 const passport = require('passport')
-const steampass = require('passport-steam')
+// const steampass = require('passport-steam')
 
 require('./config/passport')(passport)
 
@@ -16,6 +16,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const redditRouter = require('./routes/reddit');
 const registerRouter = require('./routes/register');
+const steamRouter = require('./routes/steam');
 
 const app = express();
 
@@ -29,11 +30,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/reddit',redditRouter);
 app.use('/register', registerRouter);
-app.use('/auth', auth)
+app.use('/auth', auth);
+app.use('/steam', steamRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,6 +54,14 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
 
 module.exports = app;
