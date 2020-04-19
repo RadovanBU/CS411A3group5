@@ -20,26 +20,33 @@ router.get('/', function (req, res, next) {
 
   mongo.collection("users").find({ _id: 1 }).toArray(function (err, result) {
     if (err) throw err;
-    console.log(result);
 
-    fetch("http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=" + key.apiKey + "&steamid=76561197960434622&format=json")
+    fetch("http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=" + key.apiKey + "&steamid=" + result[0].steamId + "&format=json")
+
       .then(response => {
         return response.json();
       })
       .then(json => {
-        numGames = json.response.total_count;
+        if (json.response.total_count) {
+          numGames = json.response.total_count;
 
-        for (let i = 0; i < numGames; i++) {
-          steamGames.push(json.response.games[i].name);
+          for (let i = 0; i < numGames; i++) {
+            steamGames.push(json.response.games[i].name);
+          }
+
+          console.log(steamGames);
+
+          // res.render('dbRes', { dbRes: `You have played ${steamGames.toString()} in the past two weeks.` });
+
+        } else {
+          console.log("Not enough games played on Steam")
+          // res.render('dbRes', { dbRes: `You have played have not played any Steam games in the past two weeks.` });
         }
-        
-        console.log(steamGames)
       })
-      .catch(err => {
-        console.log("error")
-      })
+    .catch(err => {
+      console.log("error")
+    })
   });
-
 });
 
 
