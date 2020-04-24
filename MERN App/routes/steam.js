@@ -3,7 +3,7 @@ const router = express.Router();
 
 const fetch = require("node-fetch");
 const db = require('../mongo/mongo');
-const key = require('../config/keys');
+const key = require('../config/keys')
 
 
 db.connect(function (err, client) {
@@ -35,12 +35,8 @@ router.get('/', function (req, res, next) {
           }
 
           console.log(steamGames);
-
-          // res.render('dbRes', { dbRes: `You have played ${steamGames.toString()} in the past two weeks.` });
-
         } else {
           console.log("Not enough games played on Steam")
-          // res.render('dbRes', { dbRes: `You have played have not played any Steam games in the past two weeks.` });
         }
       })
     .catch(err => {
