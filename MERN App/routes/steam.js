@@ -14,17 +14,18 @@ db.connect(function (err, client) {
 });
 
 router.get('/', function (req, res, next) {
-  res.render('steamAPI');
+  //res.render('steamAPI');
 
   let mongo = db.getDB();
   let steamGames = new Array();
   let redditAPIresults = new Array();
 
-  mongo.collection("users").find({ _id: 1 }).toArray(function (err, result) {
+  let steemDBcall = mongo.collection("users").find({ _id: 1 }).each(function (err, result) {
     if (err) throw err;
 
-    steamDBcall = result;
+    //steamDBcall = result;
     //console.log(steamDBcall);
+
 
 
     fetch("http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=" + key.apiKey + "&steamid=" + result[0].steamId + "&format=json")
