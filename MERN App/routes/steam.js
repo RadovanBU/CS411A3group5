@@ -5,6 +5,7 @@ const fetch = require("node-fetch");
 const db = require('../mongo/mongo');
 const key = require('../config/keys');
 
+//var redditAPIresults = new Array();
 
 db.connect(function (err, client) {
   if (err) {
@@ -22,6 +23,8 @@ router.get('/', function (req, res, next) {
   mongo.collection("users").find({ _id: 1 }).toArray(function (err, result) {
     if (err) throw err;
 
+    steamDBcall = result;
+    //console.log(steamDBcall);
 
 
     fetch("http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=" + key.apiKey + "&steamid=" + result[0].steamId + "&format=json")
@@ -82,6 +85,7 @@ router.get('/', function (req, res, next) {
 
           res.render('dbRes', {dbRes: `We suggest these reddits ${redditAPIresults.toString()} `});
           //res.write('steamAPI', {steamRes: `We suggest these reddits ${redditAPIresults.toString()} ` });
+
         } else {
           console.log("Not enough games played on Steam")
           //res.render('dbRes', { dbRes: `You have played have not played any Steam games in the past two weeks.` });
