@@ -37,6 +37,7 @@ let db_return = mongo.collection(“games”).find({“redditName”: currentGam
 Games: {redditName : Game Name, reddits: list of reddits associated with that game}
 
 Games Collection Example
+```
 {
 	"_id" : ObjectId("5e9a3928b9f3ae79defda627"),
 	"redditName" : "Citizen Kane",
@@ -44,14 +45,17 @@ Games Collection Example
 		"r/CitizenKane"
 	]
 }
+```
 
 Users: {‘steamId’ : steamId found from the steam API}
 
 Users Collection Example:
+```
 {
 	“_id” : ObjectId(“5e9a3928b9f3ae79defda627”),
 	“steamId” : 76561199048589492
 }
+```
 
 
 ## Sequence Diagram
