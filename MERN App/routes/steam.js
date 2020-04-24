@@ -3,7 +3,7 @@ const router = express.Router();
 
 const fetch = require("node-fetch");
 const db = require('../mongo/mongo');
-const key = require('../config/keys')
+const key = require('../config/keys');
 
 
 db.connect(function (err, client) {
